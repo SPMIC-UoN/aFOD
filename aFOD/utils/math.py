@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 
 import numpy as np
-from scipy.special import lpmv
-from scipy.misc import factorial
+from scipy.special import factorial ,lpmv
 
 
 def cart2sph(x, y, z):
     
     res = np.zeros((x.size, 3), dtype=float)
-    r = np.sqrt((x * x) + (y * y) + (z * z))
+    r = np.sqrt(x**2 + y**2 + z**2)
     res[:, 0] = r   # radius
+    r = np.where(r == 0, 1.0, r) # to resolve the 0 div problem
     res[:, 1] = np.arctan2(y, x)    # theta [-pi, pi]
     res[res[:, 1] < 0, 1] = res[res[:, 1] < 0, 1] + 2 * np.pi # theta [0, 2pi]
     res[:, 2] = np.arccos(z / r)    # phi
