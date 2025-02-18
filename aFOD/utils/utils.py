@@ -60,8 +60,8 @@ def get_peaks(sphere, fod_file, mask_file, max_order, n=3, sym=True, f=0.1, min_
     n_coeffs, m, l, c1, c2 = qbm.get_m_l(max_order, sh_coeff)
 
     #INITIALIZE PEAK AND AMPLITUDE ARRAYS
-    peaks = np.zeros(list(mask.shape) + [n*3], dtype=np.float)
-    amplitudes = np.zeros(list(mask.shape) + [n], dtype=np.float)
+    peaks = np.zeros(list(mask.shape) + [n*3], dtype=float)
+    amplitudes = np.zeros(list(mask.shape) + [n], dtype=float)
     for x, y, z in zip(xs, ys, zs):
         _amplitudes = np.dot(vertices_sh, fod[x, y, z, :])
         _amplitudes[_amplitudes < 0] = 0
