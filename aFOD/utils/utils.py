@@ -40,9 +40,9 @@ def round_bvals(bvals, verbose=False):
 
 def get_peaks(sphere, fod_file, mask_file, max_order, n=3, sym=True, f=0.1, min_angle=25,
               non_lin=False, save_results=False, verbose=False):
-    mask = (nib.load(mask_file)).get_data()
+    mask = (nib.load(mask_file)).get_fdata()
     fod_obj = nib.load(fod_file)
-    fod = fod_obj.get_data()
+    fod = fod_obj.get_fdata()
 
     if sym:
         sh_coeff = 'even'
